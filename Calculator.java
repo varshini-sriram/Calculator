@@ -8,24 +8,17 @@ public class Calculator extends Frame implements ActionListener {
     private boolean isNegative, isDecimal;
 
     public Calculator() {
-        // Frame properties
         setLayout(new BorderLayout(10, 10));
         setSize(400, 500);
         setTitle("Enhanced Calculator");
         setBackground(Color.lightGray);
-
-        // Display field
         display = new TextField();
         display.setFont(new Font("Arial", Font.BOLD, 32));
         display.setEditable(false);
         add(display, BorderLayout.NORTH);
-
-        // Button panel
-        Panel buttonPanel = new Panel();
+       Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new GridLayout(5, 4, 10, 10));
         add(buttonPanel, BorderLayout.CENTER);
-
-        // Buttons
         String[] buttonLabels = {
                 "7", "8", "9", "/",
                 "4", "5", "6", "*",
@@ -41,13 +34,11 @@ public class Calculator extends Frame implements ActionListener {
             buttonPanel.add(button);
         }
 
-        // Clear button
         Button clearButton = new Button("Clear History");
         clearButton.setFont(new Font("Arial", Font.BOLD, 20));
         clearButton.addActionListener(this);
         add(clearButton, BorderLayout.SOUTH);
 
-        // Window closing event
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
                 System.exit(0);
@@ -76,7 +67,6 @@ public class Calculator extends Frame implements ActionListener {
             handleOperator(command);
         }
     }
-
     private void updateDisplay(String command) {
         if (command.equals(".") && isDecimal) {
             return; // Only allow one decimal point
@@ -151,7 +141,7 @@ public class Calculator extends Frame implements ActionListener {
             double currentValue = Double.parseDouble(display.getText());
             if (currentValue >= 0) {
                 double squareRoot = Math.sqrt(currentValue);
-                display.setText(String.format("%.2f", squareRoot)); // Display square root with 2 decimal places
+                display.setText(String.format("%.2f", squareRoot)); 
             } else {
                 display.setText("Error");
             }
